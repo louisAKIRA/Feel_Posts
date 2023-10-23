@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> baseHead customTitle=customTitle}}
+<body>
+    {{> siteHeader }}
+        <section class="section">
+            <div class="container">
+                {{#if onePost}}
+                    <div class="post_con_content">
+                        <h2>{{onePost.title}}</h2>
+                        <p><span >{{onePost.form}}</span> | <span>{{onePost.createdAtText}}</span></p>
+                        <p>{{onePost.content}}</p>
+                    </div>
+                    <hr>
+                    <form  action="/p/{{ onePost.id }}/comment" method="post">
+                        <p>
+                            <textarea name="content"  placeholder="แสดงความคิดเห็น" rows="7" >{{values.content}}</textarea>
+                        </p>
+                        <p>
+                            <input type="text" name="form" placeholder="จากคุณ?" value="{{values.form}}">
+                        </p>
+                        <input id="input_accepted" type="checkbox"  name="accepted">
+                        <label for="input_accepted">ข้อความยาวๆที่หลายคนไม่เคยอ่าน</label>
+                        <p>
+                            <button type="submit">คอมเม้นท์</button>
+                        </p>
+                        {{#if errorMessage}}
+                            <p>{{errorMessage}}</p>
+                        {{/if}}
+                    </form>
+                    <hr>
+                    {{#if postComments}}
+                        <h4>{{postComments.length}} คอมเม้นท์</h4>
+                            {{else}}
+                                <h4>ยังไม่มีคอมเม้นท์</h4>
+                    {{/if}}
+                    {{#each postComments}}
+                        <div class="post_con_comment">
+                            <p>
+                                <span style="font-weight: 700;">{{this.form}}</span> | 
+                                <span>{{this.createdAtText}}</span>
+                            </p>
+                            <p>{{this.content}}</p>
+                        </div>
+                    {{/each}}
+                        {{else}}
+                            <p>ไม่พบเนื่อหาที่คุณต้องการ</p>
+                {{/if}}
+            </div>
+        </section>
+    {{> siteFooter}}
+    {{> siteScrollTop}}
+    {{> siteScripts}}
+</body>
+
+</html>

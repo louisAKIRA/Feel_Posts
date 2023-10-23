@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> baseHead customTitle='NEW Posts | '}}
+
+<body>
+    {{> siteHeader}}
+        <section class="section">
+            <div class="container">
+                <div class="post_con">
+                    <h3>สร้างโพสใหม่</h3>
+                    <p>ฝากถามเพื่อนได้เลย....</p>
+                    <form class="con_post_list" accept="/p/new" method="post">
+                        <input type="text" name="title" placeholder="หัวข้อ" value="{{values.title}}"><br>
+                        <textarea placeholder="เนื้อหา" name="content" cols="30" rows="10" >{{values.content}}</textarea><br>
+                        <input type="text" name="form" placeholder="จากคุณ?" value="{{values.form}}"><br>
+                        <input type="checkbox" id="input_accepted" name="accepted"><label for="input_accepted">ข้อความยาวๆที่หลายคนไม่เคยอ่าน</label><br>
+                        <p>
+                        <button type="submit">สร้างโพส์</button>
+                        </p>
+                        {{#if errorMessage}}
+                        <p>{{errorMessage}}</p>
+                        {{/if}}
+                    </form>
+                </div>
+            </div>
+        </section>
+    {{> siteFooter}}
+</body>
+
+</html>

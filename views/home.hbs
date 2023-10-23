@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> baseHead }}
+<body class="body_home">
+    {{> siteHeader}}
+    
+    <section class="section">
+        <div class="container">
+            <div class="container_item">
+                <h1>สวัสดีจ้าาา</h1>
+                <p>เพื่อนมีอะไรจะถามมม....</p>
+                {{#each allPosts}}
+                    <div class="con_post_list" >
+                        <h2><a href="/p/{{this.id}}">{{this.title}}</a></h2>
+                        <p>
+                            <span class="name_from">{{this.form}}</span> | 
+                            <span>{{this.createdAtText}}</span>
+                        <p>                    
+                        {{#if this.commentsCount }}
+                            <p>{{this.commentsCount}} คอมเม้นท์</p>
+                            {{else}}
+                                <p>ไม่มีคอมเม้นท์</p>
+                         {{/if}}                  
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </section>
+    {{> siteFooter}}
+    {{> siteScrollTop}}
+    {{> siteScripts}}
+</body>
+</html>
